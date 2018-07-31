@@ -5,11 +5,13 @@ import argparse
 import numpy as np
 from glob import glob
 from functools import partial
+import time
 
 from utils import parallel_run, remove_file, backup_file, write_json
 from audio import load_audio, save_audio, resample_audio, get_duration
 
 def text_recognition(path, config):
+    time.sleep(0.5)
     root, ext = os.path.splitext(path)
     txt_path = root + ".txt"
 
