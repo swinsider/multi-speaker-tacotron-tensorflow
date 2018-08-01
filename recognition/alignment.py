@@ -107,6 +107,7 @@ def align_text_fn(
 
     scores = { candidate: similarity(candidate, recognition_text) \
                     for candidate in candidates}
+    print(scores)
     sorted_scores = sorted(scores.items(), key=operator.itemgetter(1))[::-1]
 
     try :

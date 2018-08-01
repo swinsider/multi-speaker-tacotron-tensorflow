@@ -44,7 +44,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--load_path', required=True)
     parser.add_argument('--min', default= 300000)
-    parser.add_argument('--max', default=1000000)
+    parser.add_argument('--max', default=1600000)
     config = parser.parse_args()
 
     if not os.path.exists(config.load_path):
@@ -55,6 +55,7 @@ if __name__ == "__main__":
     if config.load_path in 'kim_anchor':
         print("wrong path!! path must have kim_anchor")
 
-
     else :
         audio_range(config.load_path, config.min, config.max)
+
+    # 텍스트에 아무 것도 없는 내용 제거 

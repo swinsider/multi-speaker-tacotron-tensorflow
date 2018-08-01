@@ -118,15 +118,15 @@ def download_news_video_and_content(
         if not os.path.exists(audio_path):
             encoder = get_encoder_name()
             # 영상의 오디오 추출
-            command = '{} -y -loglevel panic -i {} -ab 160k -ac 2 -ar 44100 -vn -filter:a "volume=2" {}'.\
-                    format(encoder, video_path, audio_raw_path)
+            command = '{} -y -loglevel panic -i {} -ab 160k {}'.\
+                    format(encoder, video_path, audio_path)
             subprocess.call(command, shell=True)
 
 
-            # 잡음 제거
-            command = 'noiseclean/noiseclean.sh {} {} '.\
-                format(audio_raw_path, audio_path)
-            subprocess.call(command, shell=True)
+            # # 잡음 제거
+            # command = 'noiseclean/noiseclean.sh {} {} '.\
+            #     format(audio_raw_path, audio_path)
+            # subprocess.call(command, shell=True)
 
             ###################
 
