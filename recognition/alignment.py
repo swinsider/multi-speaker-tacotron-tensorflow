@@ -126,15 +126,15 @@ def align_text_fn(
 
             if aligned_text is not None:
                 result = { audio_path: add_punctuation(aligned_text) }
-            elif abs(len(text_to_sequence(found_text)) - len(text_to_sequence(recognition_text))) > 10:
+            if abs(len(text_to_sequence(found_text)) - len(text_to_sequence(recognition_text))) > 10:
                 result = {}
             else:
-                result = { audio_path: [add_punctuation(found_text), recognition_text] }
+                result = { audio_path: add_punctuation(found_text) }
         else:
             result = {}
-
-        if len(result) == 0:
-            result = { audio_path: [recognition_text] }
+        #
+        # if len(result) == 0:
+        #     result = { audio_path: found_text }
 
         return result
 

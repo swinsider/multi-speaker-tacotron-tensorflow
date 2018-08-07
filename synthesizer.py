@@ -21,6 +21,7 @@ from text import text_to_sequence, sequence_to_text
 
 
 class Synthesizer(object):
+
     def close(self):
         tf.reset_default_graph()
         self.sess.close()
@@ -75,7 +76,7 @@ class Synthesizer(object):
             use_short_concat=False,
             manual_attention_mode=0,
             base_alignment_path=None,
-            librosa_trim=False,
+            librosa_trim=True,
             attention_trim=True,
             isKorean=True):
 
@@ -206,7 +207,7 @@ class Synthesizer(object):
             results = plot_and_save_parallel(
                     new_wavs, new_alignments, True)
 
-        return results
+        return "{}/{}.manual.wav".format(base_path, time_str)
 
 def plot_graph_and_save_audio(args,
         base_path=None,
@@ -221,7 +222,7 @@ def plot_graph_and_save_audio(args,
     idx, (wav, alignment, path, text, sequence) = args
 
     if base_path:
-        plot_path = "{}/{}.png".format(base_path, get_time())
+        plot_path = "{}/{}.png".format(base_path, time_str)
     elif path:
         plot_path = path.rsplit('.', 1)[0] + ".png"
     else:
@@ -268,6 +269,7 @@ def plot_graph_and_save_audio(args,
     if librosa_trim and end_of_sentence:
         yt, index = librosa.effects.trim(audio_out,
                 frame_length=5120, hop_length=256, top_db=50)
+        print ("index = ", index)
         audio_out = audio_out[:index[-1]]
 
     if save_alignment:

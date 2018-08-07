@@ -123,10 +123,9 @@ def download_news_video_and_content(
             subprocess.call(command, shell=True)
 
 
-            # # 잡음 제거
-            # command = 'noiseclean/noiseclean.sh {} {} '.\
-            #     format(audio_raw_path, audio_path)
-            # subprocess.call(command, shell=True)
+            # 잡음 제거
+            command = 'noiseclean/noiseclean.sh {} {} '.format(audio_raw_path, audio_path)
+            subprocess.call(command, shell=True)
 
             ###################
 
